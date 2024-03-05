@@ -2,22 +2,24 @@ import React from "react";
 import classes from './Navbar.module.css'
 import CartWidget from "../CartWidget/CartWidget";
 
-const Navbar = () => {
-    console.log(classes)
 
-    return(
-        <header className={classes.header}>
-            <h4> style={{ color: 'blue', fontSize: 12}} Ender Araya</h4>
 
-            <nav>
-                <a className='btn btn-primary'>Celulares</a>
-                <a>Tablets</a>
-                <a>Notebooks</a>
-            </nav>
-            <CartWidget/>
-        </header>
-    )
+function Navbar() {
+    const [itemCount, setItemCount] = React.useState(4);
 
+    return (
+        <nav className="navbar">
+            <ul className="navbar-nav">
+            <li><a href="/">Inicio</a></li>
+            <li><a href="/acerca-de">Tienda</a></li>
+            <li><a href="/contacto">Contacto</a></li>
+            <li><a href="/contacto">FAQ</a></li>
+            <li><a href="/contacto">Acerca de</a></li>
+            </ul>
+            <CartWidget itemCount={itemCount} /> {}
+        </nav>
+    );
 }
+
 
 export default Navbar
