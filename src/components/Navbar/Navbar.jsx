@@ -1,8 +1,6 @@
-import React from "react";
-import classes from './Navbar.module.css'
-import CartWidget from "../CartWidget/CartWidget";
-
-
+import React from 'react';
+import { Link } from 'react-router-dom';
+import CartWidget from '../CartWidget/CartWidget';
 
 function Navbar() {
     const [itemCount, setItemCount] = React.useState(4);
@@ -10,16 +8,15 @@ function Navbar() {
     return (
         <nav className="navbar">
             <ul className="navbar-nav">
-            <li><a href="/">Inicio</a></li>
-            <li><a href="/acerca-de">Tienda</a></li>
-            <li><a href="/contacto">Contacto</a></li>
-            <li><a href="/contacto">FAQ</a></li>
-            <li><a href="/contacto">Acerca de</a></li>
+                <li><Link to="/">Inicio</Link></li>
+                <li><Link to="/category/tienda">Tienda</Link></li>
+                <li><Link to="/contacto">Contacto</Link></li>
+                <li><Link to="/faq">FAQ</Link></li>
+                <li><Link to="/acerca-de">Acerca de</Link></li>
             </ul>
-            <CartWidget itemCount={itemCount} /> {}
+            <CartWidget itemCount={itemCount} />
         </nav>
     );
 }
 
-
-export default Navbar
+export default Navbar;
