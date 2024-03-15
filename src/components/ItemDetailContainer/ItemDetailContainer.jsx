@@ -1,22 +1,27 @@
-// ItemDetailContainer.jsx
+import { useEffect, useState } from "react"
+import { getProductById, getProducts } from "../../asyncMock"
+import ItemList from "../ItemList/ItemList"
+import ItemDetail from "../ItemDetail/ItemDetail"
+import { useParams } from "react-router-dom"
 
-import React, { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+const ItemDetailContainer = ({greeting}) => {
+    const [products, setProducts] = useState(null)
 
-function ItemDetailContainer() {
-    const { itemId } = useParams();
-
+    const {itemId} = useParams()
+    
     useEffect(() => {
-        // Aquí puedes realizar acciones cuando cambia el ID del producto, como obtener detalles del producto
-        console.log("ID del producto:", itemId);
-    }, [itemId]);
-
+        getProductById(itemId)
+        .then(result => {  
+            setProducts(result)
+        })
+    }, [itemId])
+    
     return (
-        <div>
-            <h2>Detalles del producto</h2>
-            {/* Aquí puedes mostrar los detalles del producto */}
-        </div>
-    );
+        <main>
+            <h1>Detalle del producto</h1>
+            <ItemDetail {...products}/>
+        </main>
+    )
 }
 
-export default ItemDetailContainer;
+export default ItemDetailContainer

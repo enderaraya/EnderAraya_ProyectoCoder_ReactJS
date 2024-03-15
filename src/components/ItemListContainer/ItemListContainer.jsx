@@ -1,31 +1,39 @@
 // ItemListContainer.jsx
-
+import { useState, useEffect } from 'react';
+import { getProducts, getProductsByCategory } from '../../asyncMock';
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
+import ItemList from '../ItemList/ItemList';
+import '../../App.css'
 
 const ItemListContainer = ({ greeting }) => {
-    const location = useLocation();
 
-    // Verificar si estamos en la página de la tienda (/category/:categoryId)
-    const isStorePage = location.pathname.includes('/category');
 
-    const categories = ['Electrónica', 'Ropa', 'Hogar', 'Deportes'];
+    const [products, setProducts] = useState([])
+
+    const {categoryId} = useParams()
+
+    useEffect(() => {
+
+        const asyncFunction = categoryId ? getProductsByCategory : getProducts
+
+        asyncFunction(categoryId)
+            .then(result => {
+                setProducts(result)
+            })
+
+    })
+
 
     return (
         <div>
-            <h1>{greeting}</h1>
-            {isStorePage && ( // Mostrar las categorías solo en la página de la tienda
-                <>
-                    <h2>Categorías:</h2>
-                    <ul>
-                        {categories.map((category, index) => (
-                            <li key={index}>
-                                <Link to={`/category/${category.toLowerCase()}`}>{category}</Link>
-                            </li>
-                        ))}
-                    </ul>
-                </>
-            )}
+            <main>
+                <h1 style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>{greeting}</h1>
+                <div style={{display: 'flex', justifyContent: 'center', alignItems: 'space-between'}}>
+                    <ItemList products={products}/>
+                </div>
+                
+            </main>
         </div>
     );
 }

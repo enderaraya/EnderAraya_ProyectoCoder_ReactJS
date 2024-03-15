@@ -12,9 +12,10 @@ function App() {
     <Router>
       <div className="App">
         <Navbar />
+
         <Routes>
           <Route path="/" element={<ItemListContainer greeting='Bienvenido!' />} />
-          <Route path="/category/:categoryId" element={<ItemListContainer />} />
+          <Route path="/category/:categoryId" element={<ItemListContainer greeting={'Categoría de: '} />} />
           <Route path="/item/:itemId" element={<ItemDetailContainer />} />
         </Routes>
       </div>
@@ -22,4 +23,4 @@ function App() {
   );
 }
 
-export default App;
+export default App

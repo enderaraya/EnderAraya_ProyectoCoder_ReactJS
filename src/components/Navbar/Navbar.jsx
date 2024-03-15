@@ -9,10 +9,10 @@ function Navbar() {
         <nav className="navbar">
             <ul className="navbar-nav">
                 <li><Link to="/">Inicio</Link></li>
-                <li><Link to="/category/tienda">Tienda</Link></li>
-                <li><Link to="/contacto">Contacto</Link></li>
-                <li><Link to="/faq">FAQ</Link></li>
-                <li><Link to="/acerca-de">Acerca de</Link></li>
+                <li><Link to="/category/electronica">Electronica</Link></li>
+                <li><Link to='/category/hogar'>Hogar</Link></li>
+                <li><Link to="/category/domotica">Domotica</Link></li>
+                <li><Link to="/category/accesorios">Accesorios</Link></li>
             </ul>
             <CartWidget itemCount={itemCount} />
         </nav>
