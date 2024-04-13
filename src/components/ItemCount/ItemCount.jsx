@@ -1,4 +1,7 @@
-import React, { useState } from "react";
+
+import React, { useState, useContext } from "react";
+import { Context } from "../../App";
+
 
 const Alert = ({ message }) => {
     return (
@@ -33,6 +36,8 @@ const ItemCount = ({ initial = 1, stock, productName, onAdd,price }) => {
         }, 2000); // Oculta la alerta después de 2 segundos
         onAdd(count);
     };
+
+    const value = useContext(Context)
 
     return (
         <article>
